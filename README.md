@@ -1,6 +1,9 @@
 # Controle de Estoque - Flask Application 🛠️📦
 Este projeto é uma aplicação web para controle de estoque, desenvolvida com Flask, que permite a gestão de produtos, entrada/saída de mercadorias, e gerenciamento de usuários com permissões específicas. Existem dois tipos de usuários: Administrador e Usuário Comum, com permissões diferenciadas.
 
+## Acesse para visualizá-lo
+https://web-production-6949d.up.railway.app/login/administrador
+
 ## Fluxo do Sistema 🔄
 
 ### 1. Início
