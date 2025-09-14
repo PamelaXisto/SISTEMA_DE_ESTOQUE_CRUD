@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_home.css') }}">
+</head>
+<body>
+    <div class="home-container">
+        <h2>Bem-vindo ao Sistema de Controle de Estoque</h2>
+        <p>Escolha uma das opções abaixo para acessar:</p>
+
+        <div class="buttons-container">
+            <a href="{{ url_for('login_admin') }}" class="btn">Entrar como Administrador</a>
+            <a href="{{ url_for('login_comum') }}" class="btn">Entrar como Usuário Comum</a>
+        </div>
+    </div>
+</body>
+</html>

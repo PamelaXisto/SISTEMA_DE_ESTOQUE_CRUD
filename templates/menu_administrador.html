@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_menu_administrador.css') }}">
+</head>
+<body>
+    <h2>Bem-vindo ao Menu do Administrador</h2>
+    <ul>
+        <li><a href="{{ url_for('cadastro_administrador') }}">Cadastrar Novo Administrador</a></li>
+        <li><a href="{{ url_for('cadastro_comum') }}">Cadastrar Novo Usuário</a></li>
+        <li><a href="{{ url_for('visualizar_estoque') }}">Visualizar Estoque</a></li>
+        <li><a href="{{ url_for('produtos_baixo_estoque') }}">Produtos com Baixo Estoque</a></li>
+        <li><a href="{{ url_for('cadastrar_produto') }}">Cadastrar Produto</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</body>
+</html>

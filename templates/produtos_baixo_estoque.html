@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos com Baixo Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_estoque.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Produtos com Baixo Estoque</h2>
+        <table class="tabela-estoque">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Quantidade Mínima</th>
+                    <th>Preço (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <td>{{ produto['id'] }}</td>
+                    <td>{{ produto['nome'] }}</td>
+                    <td>{{ produto['descricao'] }}</td>
+                    <td>{{ produto['quantidade'] }}</td>
+                    <td>{{ produto['quantidade_minima'] }}</td>
+                    <td>{{ produto['preco'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('menu_administrador') }}" class="btn-voltar">Voltar ao Menu</a>
+    </div>
+</body>
+</html>

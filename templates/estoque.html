@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de Produtos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_estoque.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h2>Estoque de Produtos</h2>
+        <table class="tabela-estoque">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Quantidade Mínima</th>
+                    <th>Preço (R$)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr class="{% if produto['baixo_estoque'] %}baixo-estoque{% endif %}">
+                    <td>{{ produto['id'] }}</td>
+                    <td>{{ produto['nome'] }}</td>
+                    <td>{{ produto['descricao'] }}</td>
+                    <td>{{ produto['quantidade'] }}</td>
+                    <td>{{ produto['quantidade_minima'] }}</td>
+                    <td class="preco">R$ {{ "{:.2f}".format(produto['preco']) }}</td>
+                    <td>
+                        {% if is_admin %}
+                    <div class="acoes-container">
+                        <div class="input-container">
+                            <form action="{{ url_for('entrada_produto', id=produto['id']) }}" method="POST">
+                                <label for="entrada-{{ produto['id'] }}" class="label">Entrada:</label>
+                                <input id="entrada-{{ produto['id'] }}" type="number" name="quantidade" placeholder="0" min="1" required>
+                                <button type="submit" class="btn-entrada">Entrada</button>
+                            </form>
+                        </div>
+
+                        <div class="input-container">
+                            <form action="{{ url_for('saida_produto', id=produto['id']) }}" method="POST">
+                                <label for="saida-{{ produto['id'] }}" class="label">Saída:</label>
+                                <input id="saida-{{ produto['id'] }}" type="number" name="quantidade" placeholder="0" min="1" required>
+                                <button type="submit" class="btn-saida">Saída</button>
+                            </form>
+                        </div>
+                    </div>
+
+                        <div class="btn-container">
+                            <a href="{{ url_for('editar_produto', id=produto['id']) }}" class="btn-editar">Editar</a>
+                            <a href="{{ url_for('excluir_produto', id=produto['id']) }}" class="btn-excluir">Excluir</a>
+                        </div>
+                        {% else %}
+
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('menu_administrador') if is_admin else url_for('menu_usuario') }}" class="btn-voltar">Voltar ao Menu</a>
+    </div>
+</body>
+</html>
